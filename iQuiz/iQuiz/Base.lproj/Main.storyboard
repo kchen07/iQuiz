@@ -5,28 +5,29 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--iQuiz-->
         <scene sceneID="6Tk-R8-1ms">
             <objects>
-                <tableViewController id="pNw-7P-cIu" customClass="ViewController" customModule="iQuiz" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="mainPage" id="pNw-7P-cIu" customClass="ViewController" customModule="iQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="fOY-FY-XFn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="0.88940952169999998" blue="0.92075857530000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="fMM-PM-lXX">
-                            <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                            <rect key="frame" x="0.0" y="99" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <items/>
                         </toolbar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell1" id="bKo-bI-e6D">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell1" rowHeight="71" id="bKo-bI-e6D">
+                                <rect key="frame" x="0.0" y="28" width="375" height="71"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bKo-bI-e6D" id="MbV-Sw-OQ6">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="70.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -46,7 +47,108 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GrU-RO-vWP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="402" y="36"/>
+            <point key="canvasLocation" x="303" y="45"/>
+        </scene>
+        <!--Question View Controller-->
+        <scene sceneID="yLC-nU-3N2">
+            <objects>
+                <viewController storyboardIdentifier="questionView" id="Ijz-kz-V8i" customClass="QuestionViewController" customModule="iQuiz" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="56e-vs-vFH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g6w-xK-3OW">
+                                <rect key="frame" x="34" y="99" width="305" height="157"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AMO-w7-AA5">
+                                <rect key="frame" x="158" y="288" width="59" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" identifier="c1"/>
+                                <state key="normal" title="Choice 1"/>
+                                <connections>
+                                    <action selector="c1:" destination="Ijz-kz-V8i" eventType="touchUpInside" id="pGE-IG-Ij4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAs-TY-CHW">
+                                <rect key="frame" x="156" y="355" width="61" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" identifier="c2"/>
+                                <state key="normal" title="Choice 2"/>
+                                <connections>
+                                    <action selector="c2:" destination="Ijz-kz-V8i" eventType="touchUpInside" id="6zB-mv-1x9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="trb-uG-h5n">
+                                <rect key="frame" x="156" y="417" width="61" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" identifier="c3"/>
+                                <state key="normal" title="Choice 3"/>
+                                <connections>
+                                    <action selector="c3:" destination="Ijz-kz-V8i" eventType="touchUpInside" id="Xh6-KM-tQv"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="buV-oZ-VMo">
+                                <rect key="frame" x="158" y="489" width="62" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" identifier="c4"/>
+                                <state key="normal" title="Choice 4"/>
+                                <connections>
+                                    <action selector="c4:" destination="Ijz-kz-V8i" eventType="touchUpInside" id="zIR-Px-uzW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aS6-m3-to9">
+                                <rect key="frame" x="22" y="20" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="backPressed:" destination="Ijz-kz-V8i" eventType="touchUpInside" id="eOg-rN-1Om"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hcx-s6-k48">
+                                <rect key="frame" x="320" y="20" width="32" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Next"/>
+                                <connections>
+                                    <action selector="nextPressed:" destination="Ijz-kz-V8i" eventType="touchUpInside" id="FCA-BK-J15"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Question:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iph-kL-2qX">
+                                <rect key="frame" x="95" y="25" width="209" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <viewLayoutGuide key="safeArea" id="5qY-D6-iK3"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="eMs-O9-X4n" appends="YES" id="nzy-T6-9Ho"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="choice1" destination="AMO-w7-AA5" id="RQn-iA-MFg"/>
+                        <outlet property="choise2" destination="oAs-TY-CHW" id="vc9-RW-Ir5"/>
+                        <outlet property="choise3" destination="trb-uG-h5n" id="qy7-VX-fuA"/>
+                        <outlet property="choise4" destination="buV-oZ-VMo" id="T1w-vJ-1oa"/>
+                        <outlet property="nextButton" destination="Hcx-s6-k48" id="VKk-Vc-d5l"/>
+                        <outlet property="option1" destination="AMO-w7-AA5" id="bwT-S8-mpj"/>
+                        <outlet property="option2" destination="oAs-TY-CHW" id="hxJ-gT-lc6"/>
+                        <outlet property="option3" destination="trb-uG-h5n" id="mkn-y1-7Kf"/>
+                        <outlet property="option4" destination="buV-oZ-VMo" id="WKp-MJ-Ll3"/>
+                        <outlet property="questionNumber" destination="Iph-kL-2qX" id="ae1-og-IuK"/>
+                        <outlet property="questionText" destination="g6w-xK-3OW" id="zMs-5Z-I3Q"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wrN-3z-rce" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="eMs-O9-X4n"/>
+            </objects>
+            <point key="canvasLocation" x="1328.8" y="20.239880059970016"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tY2-Ej-t72">
