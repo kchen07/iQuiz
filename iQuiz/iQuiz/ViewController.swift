@@ -14,15 +14,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let categories = ["Mathematics", "Marvel Super Heros", "Science"]
     let descriptions = ["Math related questions", "Are you a true marvel fan?", "Prove that you are a scientist"]
     let images = ["math", "marvel", "science"]
-    var mathQuestion : [(questionText: String, answer: Int, answers: [String])] =  [(questionText: "Something?", answer: 1, answers: ["One","Two","Three", "Four"])]
-    var scienceQuestion : [(questionText: String, answer: Int, answers: [String])] =  [(questionText: "Something?", answer: 1, answers: ["One","Two","Three", "Four"])]
-    var marvelQuestion : [(questionText: String, answer: Int, answers: [String])] =  [(questionText: "Something?", answer: 1, answers: ["One","Two","Three", "Four"])]
+    var mathQuestion : [(questionText: String, answer: Int, answers: [String])] =  [(questionText: "What is 3 - 2?", answer: 3, answers: ["-1","5","1", "6"])]
+    var scienceQuestion : [(questionText: String, answer: Int, answers: [String])] =  [(questionText: "Which one is not part of dna sequence?", answer: 2, answers: ["A","B","C", "T"]), (questionText: "What is the value of acceleration due to gravity?", answer: 4, answers: ["10 miles/hour","23.2 km/s","9.81 km/minute", "9.81 km/second"])]
+    var marvelQuestion : [(questionText: String, answer: Int, answers: [String])] = [(questionText: "Who saved spiderman from the hulk?", answer: 3, answers: ["Wolverine","She-Hulk","Captain America", "Dare Devil"]), (questionText: "Who is Iron Man?", answer: 1, answers: ["Tony Stark","Jane Foster","Liam Smith", "Hugh Banner"]), (questionText: " How many Avengers are there in the Avengers movie?", answer: 2, answers: ["2","6","4", "7"])]
     var questions = [[(questionText: String, answer: Int, answers: [String])]]()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        questions.append(marvelQuestion)
         questions.append(mathQuestion)
+        questions.append(marvelQuestion)
         questions.append(scienceQuestion)
     }
     fileprivate var questionView: QuestionViewController?

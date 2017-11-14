@@ -12,6 +12,7 @@ class QuestionViewController: UIViewController {
 
     var questions = [(questionText: String, answer: Int, answers: [String])]()
     var questionNum = 0
+    var score = 0
     @IBOutlet weak var questionNumber: UILabel!
     @IBOutlet weak var questionText: UILabel!
     @IBOutlet weak var option1: UIButton!
@@ -19,6 +20,8 @@ class QuestionViewController: UIViewController {
     @IBOutlet weak var option3: UIButton!
     @IBOutlet weak var option4: UIButton!
     @IBOutlet weak var nextButton: UIButton!
+    fileprivate var answerView: AnswerViewController?
+    var ans = [UIButton]()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,6 +32,7 @@ class QuestionViewController: UIViewController {
         option2.setTitle(questions[questionNum].answers[1], for: .normal)
         option3.setTitle(questions[questionNum].answers[2], for: .normal)
         option4.setTitle(questions[questionNum].answers[3], for: .normal)
+        ans = [option1, option2, option3, option4]
     }
 
     @IBAction func backPressed(_ sender: Any) {
@@ -113,10 +117,36 @@ class QuestionViewController: UIViewController {
     
     @IBAction func nextPressed(_ sender: Any) {
         createAnswer()
+        answerView?.correctAnswer = self.questions[questionNum].answers[questions[questionNum].answer - 1]
+        answerView?.questions = self.questions
+        answerView?.questionNum = self.questionNum
+        answerView?.score = self.score
+        var corr:Bool = false
+        if (questions[questionNum].answer == 1) {
+            corr = chose1
+        } else if (questions[questionNum].answer == 2) {
+            corr = chose2
+        } else if (questions[questionNum].answer == 3) {
+            corr = chose3
+        } else {
+            corr = chose4
+        }
+        answerView?.correct = corr
+        let transition = CATransition()
+        transition.duration = 0.3
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromRight
+        view.window!.layer.add(transition, forKey: kCATransition)
+        present(answerView!, animated: false, completion: nil)
     }
     
     func createAnswer() {
-        
+        if answerView == nil {
+            answerView =
+                storyboard?
+                    .instantiateViewController(withIdentifier: "answerView")
+                as? AnswerViewController
+        }
     }
     
 
