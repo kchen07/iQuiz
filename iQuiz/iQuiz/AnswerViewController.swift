@@ -12,7 +12,8 @@ class AnswerViewController: UIViewController {
 
     @IBOutlet weak var isCorrect: UILabel!
     @IBOutlet weak var answer: UILabel!
-
+    @IBOutlet weak var des: UILabel!
+    var desc = ""
     var correctAnswer:String = ""
     fileprivate var questionView: QuestionViewController?
     fileprivate var endView: EndViewController?
@@ -37,6 +38,7 @@ class AnswerViewController: UIViewController {
             resultImage.image = UIImage(named: "incorrect")
 
         }
+        des.text = desc
         answer.text = correctAnswer
     }
 

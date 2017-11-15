@@ -121,6 +121,8 @@ class QuestionViewController: UIViewController {
         answerView?.questions = self.questions
         answerView?.questionNum = self.questionNum
         answerView?.score = self.score
+        answerView?.desc = questions[questionNum].questionText
+
         var corr:Bool = false
         if (questions[questionNum].answer == 1) {
             corr = chose1

@@ -107,10 +107,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hcx-s6-k48">
-                                <rect key="frame" x="307" y="30" width="32" height="30"/>
+                                <rect key="frame" x="299" y="30" width="49" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
-                                <state key="normal" title="Next"/>
+                                <state key="normal" title="Submit"/>
                                 <connections>
                                     <action selector="nextPressed:" destination="Ijz-kz-V8i" eventType="touchUpInside" id="FCA-BK-J15"/>
                                 </connections>
@@ -177,27 +177,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Correct Answer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v8k-9x-tyG">
-                                <rect key="frame" x="16" y="183" width="364" height="18"/>
+                                <rect key="frame" x="5" y="274" width="364" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="298-V1-aSt">
-                                <rect key="frame" x="58.5" y="204.5" width="258" height="258"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="258" id="crN-ml-3Yr"/>
-                                    <constraint firstAttribute="width" constant="258" id="zki-h9-fgl"/>
-                                </constraints>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e94-1I-geq">
-                                <rect key="frame" x="16" y="38" width="34" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Back"/>
-                                <connections>
-                                    <action selector="backPressed:" destination="KVU-8J-7Xz" eventType="touchUpInside" id="AVc-DT-zdq"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mKc-VN-GQn">
                                 <rect key="frame" x="327" y="41" width="32" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -206,13 +191,28 @@
                                     <action selector="nextView:" destination="KVU-8J-7Xz" eventType="touchUpInside" id="ZIx-eB-dga"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e94-1I-geq">
+                                <rect key="frame" x="16" y="38" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="backPressed:" destination="KVU-8J-7Xz" eventType="touchUpInside" id="AVc-DT-zdq"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R2w-5C-Wnk">
+                                <rect key="frame" x="35" y="79" width="305" height="157"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="298-V1-aSt">
+                                <rect key="frame" x="146" y="366" width="82" height="99"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
-                        <constraints>
-                            <constraint firstItem="298-V1-aSt" firstAttribute="centerY" secondItem="nhD-du-IFR" secondAttribute="centerY" id="Bgf-cY-AwN"/>
-                            <constraint firstItem="298-V1-aSt" firstAttribute="centerX" secondItem="nhD-du-IFR" secondAttribute="centerX" id="frI-Xm-OHy"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6BX-m5-Btd"/>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="BIc-5h-joT" appends="YES" id="s8U-hA-UQf"/>
@@ -221,6 +221,7 @@
                     </view>
                     <connections>
                         <outlet property="answer" destination="v8k-9x-tyG" id="4or-PN-3VE"/>
+                        <outlet property="des" destination="R2w-5C-Wnk" id="v5J-9B-Y1j"/>
                         <outlet property="isCorrect" destination="JbG-yt-0rd" id="YZV-f9-Gil"/>
                         <outlet property="resultImage" destination="298-V1-aSt" id="xPL-IE-UDj"/>
                     </connections>
