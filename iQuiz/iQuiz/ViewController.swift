@@ -10,9 +10,9 @@
 import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-    let categories = ["Mathematics", "Marvel Super Heros", "Science"]
-    let descriptions = ["Math related questions", "Are you a true marvel fan?", "Prove that you are a scientist"]
+    let questionURL = "http://tednewardsandbox.site44.com/questions.json"
+    var categories = ["Mathematics", "Marvel Super Heros", "Science"]
+    var descriptions = ["Math related questions", "Are you a true marvel fan?", "Prove that you are a scientist"]
     let images = ["math", "marvel", "science"]
     var mathQuestion : [(questionText: String, answer: Int, answers: [String])] =  [(questionText: "What is 3 - 2?", answer: 3, answers: ["-1","5","1", "6"])]
     var scienceQuestion : [(questionText: String, answer: Int, answers: [String])] =  [(questionText: "Which one is not part of dna sequence?", answer: 2, answers: ["A","B","C", "T"]), (questionText: "What is the value of acceleration due to gravity?", answer: 4, answers: ["10 miles/hour","23.2 km/s","9.81 km/minute", "9.81 km/second"])]
@@ -21,16 +21,83 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        questions.append(mathQuestion)
-        questions.append(marvelQuestion)
-        questions.append(scienceQuestion)
+        NSLog("HIHI")
+        loadQuestionsData(json_url: questionURL)
     }
     fileprivate var questionView: QuestionViewController?
 
+    private func loadQuestionsData(json_url: String) {
+
+        var url = URL(string: json_url)
+        if (url == nil) {
+            url = URL(string: questionURL)
+        }
+        URLSession.shared.dataTask(with:url!) { (data, response, error) in
+            if error == nil {
+                DispatchQueue.main.async(execute: {
+                    self.categories.removeAll()
+                    self.descriptions.removeAll()
+                })
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data!) as? [[String: Any]]
+                    var index1 : Int = 0
+                    for dict in json! {
+                        let cat = dict["title"] as! String
+                        DispatchQueue.main.async {
+                            self.categories.append(cat)
+                            self.descriptions.append(dict["desc"] as! String)
+                        }
+                        if let qs = dict["questions"] as? [[String: Any]] {
+                            let questn = [(questionText: String, answer: Int, answers: [String])]()
+                            self.questions.append(questn)
+                            for q in qs {
+                                var questiont = ""
+                                if let qText : String = q["text"] as? String {
+                                    questiont = qText
+                                }
+                                var answ = -1
+                                if let ans = q["answer"] as? String {
+                                    answ = Int(ans)!
+                                }
+                                var choices = [""]
+                                if let anss : [String] = q["answers"] as? [String] {
+                                    choices = anss
+                                }
+                                self.questions[index1].append((questiont, answ, choices))
+                            }
+                        }
+                        index1 = index1 + 1
+                    }
+                } catch {
+                    print("Error")
+                }
+            } else {
+                NSLog("NO INTERNET")
+            }
+        }.resume()
+
+    }
+    
     @IBAction func settingPressed(_ sender: Any) {
-        let alert = UIAlertController(title: "Setting", message: "Settings go here", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        let alert = UIAlertController(title: "Setting", message: "Enter new URL", preferredStyle: .alert)
+        
+        let checkBtn = UIAlertAction(title: "Check now", style: .default, handler: {
+            check -> Void in
+            let newURL = alert.textFields![0] as UITextField
+            self.loadQuestionsData(json_url: newURL.text!)
+        })
+        
+        let cancelBtn = UIAlertAction(title: "Cancel", style: .default, handler: {_ in NSLog("Cancel Pressed")
+        })
+        
+        alert.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = "Enter URL"
+        }
+        
+        alert.addAction(checkBtn)
+        alert.addAction(cancelBtn)
+        
+        self.present(alert, animated:true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -39,7 +106,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
-        var col = UIColor(hue: 184/360, saturation: 33/100, brightness: 99/100, alpha: 1.0) /* #a9f6fc */
+        let col = UIColor(hue: 184/360, saturation: 33/100, brightness: 99/100, alpha: 1.0) /* #a9f6fc */
         cell.backgroundColor = col
         cell.textLabel!.text = categories[indexPath.row]
         cell.detailTextLabel!.text = descriptions[indexPath.row]
