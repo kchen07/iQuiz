@@ -10,6 +10,7 @@
 import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    @IBOutlet var table: UITableView!
     let questionURL = "http://tednewardsandbox.site44.com/questions.json"
     var categories = ["Mathematics", "Marvel Super Heros", "Science"]
     var descriptions = ["Math related questions", "Are you a true marvel fan?", "Prove that you are a scientist"]
@@ -20,8 +21,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var questions = [[(questionText: String, answer: Int, answers: [String])]]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        questions.append(mathQuestion)
+        questions.append(scienceQuestion)
+        questions.append(marvelQuestion)
         // Do any additional setup after loading the view, typically from a nib.
-        NSLog("HIHI")
         loadQuestionsData(json_url: questionURL)
     }
     fileprivate var questionView: QuestionViewController?
@@ -34,19 +37,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         URLSession.shared.dataTask(with:url!) { (data, response, error) in
             if error == nil {
-                DispatchQueue.main.async(execute: {
-                    self.categories.removeAll()
-                    self.descriptions.removeAll()
-                })
+                self.categories.removeAll(keepingCapacity: true)
+                self.descriptions.removeAll(keepingCapacity: true)
+                self.questions.removeAll()
                 do {
                     let json = try JSONSerialization.jsonObject(with: data!) as? [[String: Any]]
                     var index1 : Int = 0
                     for dict in json! {
                         let cat = dict["title"] as! String
-                        DispatchQueue.main.async {
                             self.categories.append(cat)
                             self.descriptions.append(dict["desc"] as! String)
-                        }
+                        
                         if let qs = dict["questions"] as? [[String: Any]] {
                             let questn = [(questionText: String, answer: Int, answers: [String])]()
                             self.questions.append(questn)
@@ -75,7 +76,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 NSLog("NO INTERNET")
             }
         }.resume()
-
+        DispatchQueue.main.async {
+            self.table.reloadData()
+        }
     }
     
     @IBAction func settingPressed(_ sender: Any) {
@@ -87,7 +90,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.loadQuestionsData(json_url: newURL.text!)
         })
         
-        let cancelBtn = UIAlertAction(title: "Cancel", style: .default, handler: {_ in NSLog("Cancel Pressed")
+        let cancelBtn = UIAlertAction(title: "Cancel", style: .default, handler: {_ in NSLog("Cancel")
         })
         
         alert.addTextField { (textField : UITextField!) -> Void in
